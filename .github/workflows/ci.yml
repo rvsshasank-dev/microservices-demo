@@ -48,10 +48,15 @@ jobs:
         run: |
           docker build -t us-east5-docker.pkg.dev/devops-project-466116/registry/$SERVICE:$GHUB_REF-$GHUB_SHA ./src/$SERVICE
           docker push us-east5-docker.pkg.dev/devops-project-466116/registry/$SERVICE:$GHUB_REF-$GHUB_SHA
-
-      - name: Scan Docker image with Docker Scout
+      - name: build and push the docker image for cartservice
+        env:
+          GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
+          SERVICE: ${{ matrix.folder }}
+          GHUB_REF: ${{ github.ref_name }}
+          GHUB_SHA: ${{ github.sha }}
         run: |
-          docker scout cves us-east5-docker.pkg.dev/devops-project-466116/registry/$SERVICE:$GHUB_REF-$GHUB_SHA
+          docker build -t us-east5-docker.pkg.dev/devops-project-466116/registry/cartservice:$GHUB_REF-$GHUB_SHA ./src/cartservice/src/
+          docker push us-east5-docker.pkg.dev/devops-project-466116/registry/$SERVICE:$GHUB_REF-$GHUB_SHA
 
   update_helm_chart:
     runs-on: ubuntu-latest
