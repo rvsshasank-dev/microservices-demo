@@ -46,7 +46,7 @@ jobs:
           file: ./src/${{ matrix.folder }}/Dockerfile
           push: true
           tags: |
-            ${{ variables.GAR_LOCATION }}/ ${{ matrix.folder }}:${{ github.ref_name }}-${{ github.sha }}
+            ${{ GAR_LOCATION }}/ ${{ matrix.folder }}:${{ github.ref_name }}-${{ github.sha }}
 
 
 
