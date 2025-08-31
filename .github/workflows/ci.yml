@@ -1,11 +1,14 @@
-name: CI Pipeline
+oname: CI Pipeline
 
 on:
   push:
     branches:
       - main
-  
 
+  env:
+    PROJECT_ID= devops-project-466116
+    GAR_LOCATION= us-east5-docker.pkg.dev/devops-project-466116/registry
+    REGION = us-east-5
 jobs:
   
   build:
@@ -47,7 +50,7 @@ jobs:
           file: ./src/${{ matrix.folder }}/Dockerfile
           push: true
           tags: |
-            ${{ matrix.folder }}/${{ secrets.ECR_REPOSITORY }}:${{ github.ref_name }}-${{ github.sha }}
+            ${{ GAR_LOCATION }}/ ${{ matrix.folder }}:${{ github.ref_name }}-${{ github.sha }}
 
       - name: Build and push Docker image for Cartservice
         id: build-image
