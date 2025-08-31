@@ -20,7 +20,7 @@ jobs:
         with:
           credentials_json: '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}'
       - uses: google-github-actions/setup-gcloud@v3
-        run: gcloud info 
+      - run: gcloud info 
 
       - name: Build and push Docker image
         id: build-image
