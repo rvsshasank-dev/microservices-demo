@@ -71,8 +71,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-...@github.com'
+          git config --global user.name 'rvsshasank-dev'
+          git config --global user.email 'rvsshasank@gmail.com'
           git commit -am "Update image tag to ${{ github.ref_name }}-${{ github.sha }}"
           git push origin ${{ github.ref_name }}
 
