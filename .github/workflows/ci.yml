@@ -48,15 +48,7 @@ jobs:
           tags: |
             ${{ variables.GAR_LOCATION }}/ ${{ matrix.folder }}:${{ github.ref_name }}-${{ github.sha }}
 
-      - name: Build and push Docker image for Cartservice
-        id: build-image
-        uses: docker/build-push-action@v2
-        with:
-          context: ./src/cartservice/src/
-          file: ./src/cartservice/src/Dockerfile
-          push: true
-          tags: |
-            ${{ variables.GAR_LOCATION }}/ cartservice:${{ github.ref_name }}-${{ github.sha }}
+
 
       - name: Static Code Analysis
         uses: SonarSource/sonarcloud-github-action@master
