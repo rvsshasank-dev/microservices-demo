@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  GAR_LOCATION= us-east5-docker.pkg.dev/devops-project-466116/registry
+  GAR_LOCATION= 'us-east5-docker.pkg.dev/devops-project-466116/registry'
 
 jobs:
   
