@@ -56,7 +56,7 @@ jobs:
           GHUB_SHA: ${{ github.sha }}
         run: |
           docker build -t us-east5-docker.pkg.dev/devops-project-466116/registry/cartservice:$GHUB_REF-$GHUB_SHA ./src/cartservice/src/
-          docker push us-east5-docker.pkg.dev/devops-project-466116/registry/$SERVICE:$GHUB_REF-$GHUB_SHA
+          docker push us-east5-docker.pkg.dev/devops-project-466116/registry/cartservice:$GHUB_REF-$GHUB_SHA
 
   update_helm_chart:
     runs-on: ubuntu-latest
