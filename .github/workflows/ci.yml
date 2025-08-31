@@ -14,7 +14,6 @@ jobs:
       matrix:
         include:
           - folder: adservice
-          - folder: cartservice
           - folder: checkoutservice
           - folder: currencyservice
           - folder: emailservice
@@ -41,7 +40,7 @@ jobs:
       - run: gcloud info 
 
       - name: Build and push Docker image
-        id: build-image
+        id: build-cart
         uses: docker/build-push-action@v2
         with:
           context: ./src/${{ matrix.folder }}/
@@ -49,6 +48,16 @@ jobs:
           push: true
           tags: |
             ${{ matrix.folder }}/${{ secrets.ECR_REPOSITORY }}:${{ github.ref_name }}-${{ github.sha }}
+
+      - name: Build and push Docker image for Cartservice
+        id: build-image
+        uses: docker/build-push-action@v2
+        with:
+          context: ./src/cartservice/src/
+          file: ./src/cartservice/src/Dockerfile
+          push: true
+          tags: |
+            cartservice/${{ secrets.ECR_REPOSITORY }}:${{ github.ref_name }}-${{ github.sha }}
 
       - name: Static Code Analysis
         uses: SonarSource/sonarcloud-github-action@master
