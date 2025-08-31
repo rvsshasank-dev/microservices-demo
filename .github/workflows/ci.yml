@@ -39,15 +39,16 @@ jobs:
       - run: gcloud info
       - run: gcloud auth configure-docker us-east5-docker.pkg.dev
         
-      - name: Build and push Docker image
-        id: build-cart
-        uses: docker/build-push-action@v2
-        with:
-          context: ./src/${{ matrix.folder }}/
-          file: ./src/${{ matrix.folder }}/Dockerfile
-          push: true
-          tags: |
-            ${{ matrix.folder }}:${{ github.ref_name }}-${{ github.sha }}
+      - name: build and push the docker image
+        env:
+          GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
+          SERVICE: ${{ matrix.folder }}
+          GHUB_REF: ${{ github.ref_name }}
+          GHUB_SHA: ${{ github.sha }}
+        run: |
+        cd src/$SERVICE
+        docker build -t us-east5-docker.pkg.dev/devops-project-466116/registry:$GHUB_REF-$GHUB_SHA .
+        docker push us-east5-docker.pkg.dev/devops-project-466116/registry:$GHUB_REF-$GHUB_SHA
 
 
 
