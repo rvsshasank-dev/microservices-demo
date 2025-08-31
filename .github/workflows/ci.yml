@@ -29,7 +29,8 @@ jobs:
         id: build-image
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./src/**
+          file: ./src/**/Dockerfile
           push: true
           tags: |
             ${{ secrets.ECR_REPOSITORY }}:${{ github.ref_name }}-${{ github.sha }}
