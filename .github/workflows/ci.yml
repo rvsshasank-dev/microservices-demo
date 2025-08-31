@@ -37,7 +37,7 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
       - run: gcloud info
-      - run: gcloud auth configure-docker us-central1-docker.pkg.dev
+      - run: gcloud auth configure-docker us-east5-docker.pkg.dev
         
       - name: Build and push Docker image
         id: build-cart
