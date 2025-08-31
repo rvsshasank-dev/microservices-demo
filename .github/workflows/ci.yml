@@ -22,7 +22,7 @@ jobs:
           - folder: loadgenerator
           - folder: paymentservice
           - folder: productcatalogservice
-          - folder: shoppingservice
+          - folder: shippingservice
           - folder: recommendationservice
           - folder: shoppingassistantservice 
     steps:
