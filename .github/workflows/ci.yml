@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  GAR_LOCATION= 'us-east5-docker.pkg.dev/devops-project-466116/registry'
+  GAR_LOCATION = 'us-east5-docker.pkg.dev/devops-project-466116/registry'
 
 jobs:
   
@@ -48,7 +48,7 @@ jobs:
           file: ./src/${{ matrix.folder }}/Dockerfile
           push: true
           tags: |
-            ${{ GAR_LOCATION }}/ ${{ matrix.folder }}:${{ github.ref_name }}-${{ github.sha }}
+            ${{ env.GAR_LOCATION }}/ ${{ matrix.folder }}:${{ github.ref_name }}-${{ github.sha }}
 
 
 
@@ -61,7 +61,7 @@ jobs:
 
       - name: Scan Docker image with Docker Scout
         run: |
-          docker scout cves ${{ secrets.ECR_REPOSITORY }}:${{ github.ref_name }}-${{ github.sha }}
+          docker scout cves ${{ env.GAR_LOCATION }}/ ${{ matrix.folder }}:${{ github.ref_name }}-${{ github.sha }}
 
   update_helm_chart:
     runs-on: ubuntu-latest
