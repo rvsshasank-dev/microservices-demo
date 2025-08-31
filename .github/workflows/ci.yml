@@ -36,8 +36,9 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
-      - run: gcloud info 
-
+      - run: gcloud info
+      - run: gcloud auth configure-docker us-central1-docker.pkg.dev
+        
       - name: Build and push Docker image
         id: build-cart
         uses: docker/build-push-action@v2
