@@ -49,19 +49,6 @@ jobs:
           docker build -t us-east5-docker.pkg.dev/devops-project-466116/registry/$SERVICE:$GHUB_REF-$GHUB_SHA ./src/$SERVICE
           docker push us-east5-docker.pkg.dev/devops-project-466116/registry/$SERVICE:$GHUB_REF-$GHUB_SHA
 
-
-
-      - name: Static Code Analysis
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
-          SERVICE: ${{ matrix.folder }}
-          GHUB_REF: ${{ github.ref_name }}
-          GHUB_SHA: ${{ github.sha }}
-        with:
-          projectBaseDir: .
-
       - name: Scan Docker image with Docker Scout
         run: |
           docker scout cves us-east5-docker.pkg.dev/devops-project-466116/registry/$SERVICE:$GHUB_REF-$GHUB_SHA
