@@ -4,12 +4,27 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'src/**/'  
+  
 
 jobs:
+  
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - folder: adservice
+          - folder: cartservice
+          - folder: checkoutservice
+          - folder: currencyservice
+          - folder: emailservice
+          - folder: frontend
+          - folder: loadgenerator
+          - folder: paymentservice
+          - folder: productcatalogservice
+          - folder: shoppingservice
+          - folder: recommendationservice
+          - folder: shoppingassistantservice 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,11 +44,11 @@ jobs:
         id: build-image
         uses: docker/build-push-action@v2
         with:
-          context: ./src/**
-          file: ./src/**/Dockerfile
+          context: .
+          file: ./src/${{ matrix.folder }}/Dockerfile
           push: true
           tags: |
-            ${{ secrets.ECR_REPOSITORY }}:${{ github.ref_name }}-${{ github.sha }}
+            ${{ matrix.folder }}/${{ secrets.ECR_REPOSITORY }}:${{ github.ref_name }}-${{ github.sha }}
 
       - name: Static Code Analysis
         uses: SonarSource/sonarcloud-github-action@master
