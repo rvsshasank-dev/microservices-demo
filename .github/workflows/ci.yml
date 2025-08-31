@@ -46,8 +46,8 @@ jobs:
           GHUB_REF: ${{ github.ref_name }}
           GHUB_SHA: ${{ github.sha }}
         run: |
-        docker build -t us-east5-docker.pkg.dev/devops-project-466116/registry:$GHUB_REF-$GHUB_SHA ./src/$SERVICE
-        docker push us-east5-docker.pkg.dev/devops-project-466116/registry:$GHUB_REF-$GHUB_SHA
+          docker build -t us-east5-docker.pkg.dev/devops-project-466116/registry:$GHUB_REF-$GHUB_SHA ./src/$SERVICE
+          docker push us-east5-docker.pkg.dev/devops-project-466116/registry:$GHUB_REF-$GHUB_SHA
 
 
 
