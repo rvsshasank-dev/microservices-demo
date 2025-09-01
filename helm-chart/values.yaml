@@ -17,7 +17,7 @@
 # Declare variables to be passed into your templates.
 
 images:
-  repository: us-central1-docker.pkg.dev/google-samples/microservices-demo
+  repository: us-east5-docker.pkg.dev/devops-project-466116/registry
   # Overrides the image tag whose default is the chart appVersion.
   tag: main-05de5f1f82da836d0b2078c6f0f50ebef82ba3f6
 
