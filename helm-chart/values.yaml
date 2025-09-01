@@ -19,7 +19,7 @@
 images:
   repository: us-east5-docker.pkg.dev/devops-project-466116/registry
   # Overrides the image tag whose default is the chart appVersion.
-  tag: main-05de5f1f82da836d0b2078c6f0f50ebef82ba3f6
+  tag: main-fe68d489d9d83e4dd7aed717511d0e7dbf9aeb75
 
 serviceAccounts:
   # Specifies whether service accounts should be created.
